@@ -85,7 +85,7 @@ export default function Countdown() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.8 }}
         viewport={{ once: true }}
-        className="text-right mt-4 pl-4 sm:pl-8"
+        className="text-center mt-4 pl-4 sm:pl-8"
       >
         <p className="source-serif-4-bold text-base sm:text-lg md:text-xl text-gray-700 font-bold">
           Until we officially become Mr. & Mrs.

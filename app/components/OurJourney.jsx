@@ -8,14 +8,14 @@ export default function OurJourney() {
 
   const journeyData = [
     {
-      date: "20.08.2019",
+      date: "07.05.2022",
       title: "Lần đầu gặp nhau",
       description:
         "Ngày ấy, giữa muôn vàn con người chúng ta chạm mặt nhau như một sự sắp đặt của định mệnh. Ánh mắt đầu tiên đã mở ra câu chuyện dài đầy yêu thương.",
       image: "/hero1.jpg",
     },
     {
-      date: "18.12.2024",
+      date: "20.10.2022",
       title: "Hẹn hò",
       description:
         "Những buổi hẹn nhẹ nhàng, tiếng cười, những lần nắm tay... đã viết nên từng trang kỷ niệm. Tình yêu lớn dần theo năm tháng và chúng ta biết rằng mình thuộc về nhau.",

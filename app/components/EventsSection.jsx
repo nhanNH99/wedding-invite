@@ -16,7 +16,7 @@ export default function EventsSection() {
         day="THỨ BẢY"
         lunar="(19 Tháng 09 Ất Tỵ)"
         place="NHÀ HÀNG WHITE SWANT 2"
-        address="456 Đường DEF, Quận UVW, TP.HCM"
+        address="https://maps.app.goo.gl/wp2LjhxyhnJ8GZQm8"
         onShowQR={() => setShowQRModal(true)}
       />
 
@@ -28,7 +28,7 @@ export default function EventsSection() {
         day="THỨ BA"
         lunar="(22 Tháng 09 Ất Tỵ)"
         place="TƯ GIA NHÀ TRAI"
-        address="123 Đường ABC, Quận XYZ, TP.HCM"
+        address="https://maps.app.goo.gl/5LEKna5vPqqkBbyj7"
         onShowQR={() => setShowQRModal(true)}
       />
 
@@ -62,9 +62,7 @@ function EventItem({
   onShowQR,
 }) {
   const openGoogleMaps = () => {
-    const encodedAddress = encodeURIComponent(address);
-    const googleMapsUrl = `https://maps.google.com/?q=${encodedAddress}`;
-    window.open(googleMapsUrl, "_blank");
+    window.open(address, "_blank");
   };
 
   return (
@@ -80,20 +78,20 @@ function EventItem({
       </h5>
 
       <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-        {/* 3 cột layout - responsive */}
-        <div className="grid grid-cols-4 gap-1 md:gap-2 mb-4">
-          {/* Cột 1: Giờ và Thứ - Căn phải + Border phải */}
-          <div className="text-right col-start-1 col-end-1 pr-2 md:pr-3 border-r-2 border-gray-300">
+        {/* 3 cột layout - cột giữa lớn hơn */}
+        <div className="grid grid-cols-5 gap-1 md:gap-2 mb-4">
+          {/* Cột 1: Giờ và Thứ - Căn phải + Border phải (1/5) */}
+          <div className="col-span-1 text-right pr-2 md:pr-3 border-r-2 border-gray-300">
             <p className="source-serif-4-normal text-xs text-gray-600 leading-tight">
-              {time.replace("VÀO LÚC ", "")}
+              {time}
             </p>
             <p className="source-serif-4-normal text-xs text-gray-600 leading-tight mt-1">
               {day}
             </p>
           </div>
 
-          {/* Cột 2: Ngày và ngày âm lịch - Center */}
-          <div className="text-center px-1 md:px-2 col-span-2 col-start-2">
+          {/* Cột 2: Ngày và ngày âm lịch - Center (3/5) */}
+          <div className="col-span-3 text-center px-1 md:px-2">
             <p className="source-serif-4-bold text-2xl md:text-3xl text-gray-800 leading-tight">
               {date}
             </p>
@@ -102,8 +100,8 @@ function EventItem({
             </p>
           </div>
 
-          {/* Cột 3: Địa chỉ - Căn trái + Border trái */}
-          <div className=" col-start-4 col-end-4 text-left pl-2 md:pl-3 border-l-2 border-gray-300">
+          {/* Cột 3: Địa chỉ - Căn trái + Border trái (1/5) */}
+          <div className="col-span-1 text-left pl-2 md:pl-3 border-l-2 border-gray-300">
             <p className="source-serif-4-bold text-xs text-gray-800 leading-tight">
               {place}
             </p>
@@ -131,15 +129,28 @@ function EventItem({
 }
 
 function Calendar() {
-  // Tháng 10/2025 bắt đầu từ thứ 4
-  const firstDayOfMonth = 6; // 0 = Chủ nhật, 1 = Thứ 2, 2 = Thứ 3...
+  // Tháng 11/2025 bắt đầu từ thứ 6 (ngày 1 là thứ 6)
+  const firstDayOfMonth = 5; // 0 = Chủ nhật, 1 = Thứ 2, 2 = Thứ 3... 5 = Thứ 6
   const daysInMonth = 30;
   const emptyDays = Array(firstDayOfMonth).fill(null);
   const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   return (
-    <div className="max-w-xs mx-auto">
-      <div className="grid grid-cols-7 gap-2 text-sm font-medium">
+    <div className="max-w-xs mx-auto relative">
+      {/* Background watercolor */}
+      <div
+        className="absolute inset-0 -m-4 opacity-20"
+        style={{
+          backgroundImage: "url(/watercolor-bg.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          borderRadius: "1rem",
+        }}
+      />
+
+      {/* Calendar content */}
+      <div className="grid grid-cols-7 gap-2 text-sm font-medium relative z-10">
         {/* Header */}
         {["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "CN"].map(
           (day) => (
@@ -156,23 +167,37 @@ function Calendar() {
 
         {/* Days */}
         {days.map((day) => {
-          const isWeddingDay = day === 8;
+          const isWeddingDay = day === 8 || day === 11; // Ngày 8 (nhà gái) và ngày 11 (nhà trai)
           return (
             <div key={day} className="relative flex justify-center">
               <div
                 className={`h-8 w-8 flex items-center justify-center text-sm ${
                   isWeddingDay
-                    ? "text-red-500 font-bold relative"
+                    ? "text-red-500 font-bold relative z-10"
                     : "text-gray-700"
                 }`}
               >
                 {day}
                 {isWeddingDay && (
                   <>
-                    <div className="absolute inset-0 border-2 border-red-500 rounded-full"></div>
-                    <span className="absolute -bottom-6 text-red-500 text-lg">
-                      ♥
-                    </span>
+                    {/* Heart Image Animation - dịch chuyển lên trên */}
+                    <div
+                      className="absolute w-12 h-12 -top-4 -left-2 flex items-center justify-center opacity-0"
+                      style={{
+                        animation: "heartImageAppear 1s ease-in-out forwards",
+                        animationDelay: "1s",
+                      }}
+                    >
+                      <img
+                        src="/heart.png"
+                        alt="Heart"
+                        className="w-10 h-10 object-contain"
+                        style={{
+                          filter:
+                            "drop-shadow(0 2px 4px rgba(239, 68, 68, 0.3))",
+                        }}
+                      />
+                    </div>
                   </>
                 )}
               </div>

@@ -41,8 +41,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="vi">
       <body
-        className={`${playfair.variable} ${greatVibes.variable} ${tangerine.variable}  ${windSong.variable} antialiased`}
-        // Nếu dùng WindSong, thêm: ${windSong.variable}
+        className={`${playfair.variable} ${greatVibes.variable} ${tangerine.variable}  ${windSong.variable} antialiased m-0 p-0`}
+        style={{ margin: 0, padding: 0, minHeight: "100vh" }}
       >
         {children}
       </body>

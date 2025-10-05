@@ -7,7 +7,10 @@ export default function Hero() {
   const NUMBERS = ["11", "11", "25"]; // ngày / tháng / năm
 
   return (
-    <section className="pt-10 text-center">
+    <section className="relative pt-10 text-center -mx-4 sm:-mx-6 px-4 sm:px-6">
+      {/* Background gradient - từ top đến 50% */}
+      <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-gray-200 via-gray-100 to-transparent pointer-events-none -z-10"></div>
+
       {/* Ảnh + số */}
       <div className="grid grid-cols-3 gap-2">
         {PHOTOS.map((src, i) => (

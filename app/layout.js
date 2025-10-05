@@ -35,6 +35,10 @@ const windSong = WindSong({
 export const metadata = {
   title: "Thiệp cưới Nhân & Phúc",
   description: "Save the date 💍",
+  icons: {
+    icon: "/rings.png",
+    apple: "/rings.png",
+  },
 };
 
 export default function RootLayout({ children }) {
